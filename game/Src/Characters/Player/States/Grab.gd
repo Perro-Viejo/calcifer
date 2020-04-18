@@ -1,0 +1,11 @@
+# G R A B    S T A T E
+extends "res://Src/StateMachine/State.gd"
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Variables ░░░░
+export(float) var grab_cooldown = 0.5
+
+onready var _owner: Player = owner as Player
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Funciones ░░░░
+func enter(msg: Dictionary = {}) -> void:
+	_owner.play_animation(_owner.STATES.GRAB)
+	_owner.can_grab.z_index = _owner.z_index + 1
+	_owner.grabbing = true

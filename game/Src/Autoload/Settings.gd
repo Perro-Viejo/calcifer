@@ -22,7 +22,7 @@ var VolumeMusic:float = 0.0 setget set_volume_music
 var VolumeSFX:float = 0.0 setget set_volume_sfx
 var VolumeRange:float = 24 + 80
 #CONTROLS
-var Actions:Array = ["Right", "Left", "Up", "Down", "Jump"]
+var Actions:Array = ["Right", "Left", "Up", "Down", "Grab", "Drop"]
 var ActionControls:Dictionary = {}
 #Localization
 onready var Language:String = TranslationServer.get_locale() setget set_language
@@ -80,7 +80,7 @@ func get_volumes()->void:
 	var Master:float = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
 	var Music:float = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
 	var SFX:float = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))
-	
+
 	VolumeMaster = ((Master +80))/ VolumeRange
 	VolumeMusic = ((Music +80))/ VolumeRange
 	VolumeSFX = ((SFX +80))/ VolumeRange
@@ -211,7 +211,7 @@ func set_input_data(inputs:Dictionary)->void:
 			var event:InputEvent = set_button_data(button)
 			Settings.ActionControls[action_name].push_back(event)
 	set_InputMap()
-	
+
 func set_button_data(button:Dictionary)->InputEvent:
 	var NewEvent:InputEvent
 	if button.EventType == "InputEventKey":

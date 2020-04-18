@@ -18,6 +18,7 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="Area" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource( 1 )

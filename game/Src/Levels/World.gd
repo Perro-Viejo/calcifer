@@ -12,9 +12,9 @@ onready var _tween: Tween = $WorldLayer/Tween
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Funciones ░░░░
 func _ready() -> void:
 	# Conectar señales de las zonas del mundo pokémon
-	_zones.connect('body_shape_entered', self, '_zone_entered', [ true ])
-	_zones.connect('body_shape_exited', self, '_zone_entered', [ false ])
-	
+	_zones.connect('area_shape_entered', self, '_zone_entered', [ true ])
+	_zones.connect('area_shape_exited', self, '_zone_entered', [ false ])
+
 	# Establecer valores por defecto
 	self._current_zone = ''
 
@@ -28,38 +28,20 @@ func _on_Button_pressed()->void:
 
 
 func _zone_entered(
-		body_id: int,
-		body: Node,
-		body_shape: int,
+		area_id: int,
+		area: Area2D,
 		area_shape: int,
+		self_shape: int,
 		entered: bool
 	) -> void:
 
 	if entered:
-		if not zone_names.empty() and zone_names[area_shape]:
-			self._current_zone = zone_names[area_shape]
+		if not zone_names.empty() and zone_names[self_shape]:
+			self._current_zone = zone_names[self_shape]
 		else:
-			self._current_zone = _zones.get_child(area_shape).name
-		# Hacer zoom in
-		change_zoom(false)
+			self._current_zone = _zones.get_child(self_shape).name
 	else:
 		self._current_zone = ''
-		# Hacer zoom out
-		change_zoom()
 
-
-# Esto tendrá que ir en el Player
-func change_zoom(out: bool = true) -> void:
-	_tween.interpolate_property(
-		_player.cam,
-		'zoom',
-		_player.cam.zoom,
-		Vector2.ONE * 2 if out else _player.cam.zoom / 2,
-		1.0 if out else 0.5,
-		Tween.TRANS_QUINT,
-		Tween.EASE_OUT
-	)
-	_tween.start()
-	
-	yield(_tween, 'tween_completed')
+	yield(_player.change_zoom(!entered), 'completed')
 	Event.emit_signal('zone_entered', _current_zone)
