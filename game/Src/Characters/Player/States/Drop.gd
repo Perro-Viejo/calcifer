@@ -13,6 +13,7 @@ func enter(msg: Dictionary = {}) -> void:
 		_owner.can_grab.position.y += 6
 		_owner.can_grab.position.x += 12 * msg.dir.x
 
+	(_owner.can_grab as Pickable).being_grabbed = false
 	_owner.can_grab.z_index -= 1
 	_owner.grabbing = false
 	_owner.can_grab = null

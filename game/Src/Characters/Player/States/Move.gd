@@ -37,7 +37,7 @@ func _physics_process(delta) -> void:
 	elif dir == Vector2(0,0) and _owner.is_moving:
 		_state_machine.transition_to(owner.STATES.IDLE)
 
-	if _owner.grabbing:
+	if _owner.grabbing and _owner.can_grab:
 		_owner.can_grab.global_position = _owner.global_position
 		_owner.can_grab.position.y -= 6
 
