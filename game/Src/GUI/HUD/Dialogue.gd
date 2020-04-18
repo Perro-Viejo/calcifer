@@ -13,6 +13,7 @@ var default_size
 func _ready():
 	default_position = get_position()
 	default_size = get_size()
+	Event.connect('character_spoke', self, '_on_character_spoke')
 	$Timer.connect('timeout', self, '_on_timer_timeout')
 	$Timer.set_wait_time(animation_time)
 	set_visible_characters(0)
@@ -30,6 +31,14 @@ func _on_timer_timeout():
 	else:
 		$Timer.stop()
 
+func _on_character_spoke(character, message):
+	match character:
+		'Demon':
+			add_color_override("font_color", Color('#e35f58'))
+	show()
+	set_text(message)
+	
+
 func set_text(text):
 	set_defaults()
 	.set_text(text)
@@ -38,8 +47,6 @@ func set_text(text):
 		set_visible_characters(0)
 		if animate_on_set_text and text and text.length() > 0:
 			start_animation()
-			if canPlay == true:
-				$SFX_Text.playsound()
 		else:
 			set_visible_characters(-1)
 

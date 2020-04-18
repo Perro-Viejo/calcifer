@@ -3,8 +3,8 @@ extends Node2D
 var eaten_items = 0
 
 func _ready():
-	$InteractionArea.connect('body_entered', self, '_on_body_entered')
-	$InteractionArea.connect('body_exited', self, '_on_body_exited')
+	$InteractionArea.connect('area_entered', self, '_on_area_entered')
+	$InteractionArea.connect('area_exited', self, '_on_area_exited')
 
 func _process(delta):
 	if Input.is_action_pressed('Feed'):
@@ -12,29 +12,27 @@ func _process(delta):
 	if Input.is_action_pressed('FalseFeed'):
 		eat('Uneatable')
 
-func _on_body_entered(other):
+func _on_area_entered(other):
 	if other.get_name() == 'Player':
-		speak('Acercate Enano')
+		speak(tr("Demon_Greet"))
 
-func _on_body_exited(other):
+func _on_area_exited(other):
 	if other.get_name() == 'Player':
-		speak('No Te Bayas :(')
+		speak(tr("Demon_Goodbye"))
 
 func eat(object):
 	if object == 'Eatable':
 		eaten_items += 1
-		speak('QUE RICO COMER HP!!!')
+		speak(tr("Demon_Eat_pos"))
 		$AnimatedSprite.set_scale($AnimatedSprite.get_scale() + Vector2(0.1, 0.1))
 	else:
-		speak(':( :( CUERPO DE CRISTO!!!')
+		speak(tr("Demon_Eat_neg"))
 		$AnimatedSprite.set_scale($AnimatedSprite.get_scale() - Vector2(0.1, 0.1))
 		if eaten_items > 0:
 			eaten_items -=1
 
 func speak(text):
-	$Label.set_text(text)
-	$Label.show()
+	Event.emit_signal('character_spoke', 'Demon', text)
 	yield(get_tree().create_timer(2), 'timeout')
-	$Label.hide()
 
 

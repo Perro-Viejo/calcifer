@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Fonts/m5x7_16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Src/GUI/HUD/HUD.gd" type="Script" id=2]
@@ -6,6 +6,16 @@
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[sub_resource type="DynamicFontData" id=5]
+antialiased = false
+font_path = "res://Assets/Fonts/m5x7.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 15
+font_data = SubResource( 5 )
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -34,13 +44,22 @@ __meta__ = {
 }
 
 [node name="Dialogue" type="Label" parent="Control"]
-margin_right = 40.0
-margin_bottom = 14.0
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -87.5
+margin_top = 10.1366
+margin_right = 87.5
+margin_bottom = 24.1366
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "ERASE UNA VEZ Y OTRA VEZ"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+animation_time = 0.1
 
 [node name="Timer" type="Timer" parent="Control/Dialogue"]
 
