@@ -62,6 +62,5 @@ __meta__ = {
 animation_time = 0.1
 
 [node name="Timer" type="Timer" parent="Control/Dialogue"]
-autostart = true
 
 [node name="Tween" type="Tween" parent="."]

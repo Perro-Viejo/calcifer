@@ -21,7 +21,7 @@ func _ready():
 		start_animation()
 
 func start_animation():
-	$Timer.start()
+	if $Timer: $Timer.start()
 
 func _on_timer_timeout():
 	if get_visible_characters() < text.length():
@@ -37,7 +37,7 @@ func _on_character_spoke(character, message):
 			add_color_override("font_color", Color('#e35f58'))
 	show()
 	set_text(message)
-	
+
 
 func set_text(text):
 	set_defaults()
@@ -50,8 +50,8 @@ func set_text(text):
 		else:
 			set_visible_characters(-1)
 
-func set_defaults(): 
+func set_defaults():
 	.set_text('')
 	rect_size = default_size
-	rect_position = default_position
+#	rect_position = default_position
 	$Timer.stop()
