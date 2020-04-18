@@ -13,6 +13,10 @@ signal Paused
 signal Exit
 signal Refocus
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Perro Viejo ░░░░
+signal zone_entered(name)
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
 #For section tracking
 var MainMenu:bool = false setget set_main_menu
 var Options:bool = false setget set_options
