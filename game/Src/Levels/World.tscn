@@ -176,7 +176,8 @@ radius = 126.744
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 Next_Scene = "res://Src/TitleScreen/MainMenu.tscn"
-zone_names = [ "el barrio", "la culiandanga", "la pradera satanera" ]
+zone_names = [ "Piñalito", "Caño Cristales", "La Madre Vieja" ]
+world_name = "Sierra de la Macarena"
 
 [node name="WorldLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true

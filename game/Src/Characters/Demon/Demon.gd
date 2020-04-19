@@ -1,5 +1,7 @@
 extends Node2D
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Variables ░░░░
+const MAGIC_FIRE = preload("res://Src/Particles/MagicFireParticle.tscn")
+
 var eaten_items = 0
 
 onready var _feed_shape: RectangleShape2D = $FeedArea/CollisionShape2D.shape
@@ -42,5 +44,12 @@ func speak(text):
 func _check_food(body: Node) -> void:
 	if body.is_in_group('Pickable') and not (body as Pickable).being_grabbed:
 		var pickable: Pickable = body as Pickable
-
+		var particle = MAGIC_FIRE.instance()
+		add_child(particle)
+		particle.set_global_position(pickable.get_position())
+		pickable.set_z_index(-1)
+		pickable.set_monitoring(false) 
+		yield(get_tree().create_timer(3), 'timeout')
 		eat(pickable.is_good, pickable.carbs)
+		pickable.queue_free()
+		particle.queue_free()
