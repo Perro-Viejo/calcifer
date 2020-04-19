@@ -33,6 +33,7 @@ func update_zone_name(name: String = '') -> void:
 	_zone_name.text = name
 
 	if appear_anim:
+		Event.emit_signal('play_requested', 'UI', 'Zone')
 		$Tween.interpolate_property(
 			_zone_name,
 			'rect_position:y',

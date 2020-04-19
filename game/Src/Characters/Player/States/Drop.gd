@@ -4,6 +4,7 @@ extends "res://Src/StateMachine/State.gd"
 onready var _owner: Player = owner as Player
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Funciones ░░░░
 func enter(msg: Dictionary = {}) -> void:
+	Event.emit_signal('play_requested', 'Player', 'Drop')
 	if msg.dir.y != 0:
 		if msg.dir.y == -1:
 			_owner.can_grab.position.y -= 6

@@ -53,6 +53,7 @@ func _on_Music_value_changed(value):
 	player.play()
 
 func _on_SFX_value_changed(value):
+
 	if SetUp:
 		return
 	Settings.VolumeSFX = value/100
@@ -61,32 +62,40 @@ func _on_SFX_value_changed(value):
 	player.play()
 
 func _on_Fullscreen_pressed():
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	if SetUp:
 		return
 	Settings.Fullscreen = find_node("Fullscreen").pressed
 
 func _on_Borderless_pressed():
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	if SetUp:
 		return
 	Settings.Borderless = find_node("Borderless").pressed
 
 func _on_ScaleUp_pressed():
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	Settings.Scale += 1
 
 func _on_ScaleDown_pressed():
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	Settings.Scale -= 1
 
 func _on_Resized()->void:
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	set_resolution()
 
 func _on_Controls_pressed():
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	Event.Controls = true
 
 func _on_Back_pressed():
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	Settings.save_settings()
 	Event.Options = false
 
 func _on_Languages_pressed():
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	Event.Languages = !Event.Languages
 	if !Event.Languages:
 		return
@@ -96,9 +105,11 @@ func _on_Languages_pressed():
 
 #EVENT SIGNALS
 func on_show_controls(value:bool)->void:
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	visible = !value 	#because showing controls
 
 func on_show_languages(value:bool)->void:
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	Resolution_panel.visible = !value
 	Volume_panel.visible = !value
 

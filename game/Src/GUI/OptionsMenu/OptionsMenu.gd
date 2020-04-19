@@ -6,6 +6,7 @@ func _ready()->void:
 	Event.Controls = false
 
 func on_show_options(value:bool)->void:
+	Event.emit_signal('play_requested', 'UI', 'Gen_Button')
 	$Control.visible = value
 	Event.Controls = false
 

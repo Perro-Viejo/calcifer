@@ -56,6 +56,7 @@ func _on_character_spoke(
 			add_color_override("font_color", Color('#e35f58'))
 
 	show()
+	Event.emit_signal('play_requested', 'UI', 'Dialogue')
 	set_text(message)
 
 	_current_disappear = time_to_disappear

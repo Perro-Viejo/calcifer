@@ -6,6 +6,7 @@ export(float) var grab_cooldown = 0.5
 onready var _owner: Player = owner as Player
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Funciones ░░░░
 func enter(msg: Dictionary = {}) -> void:
+	Event.emit_signal('play_requested', 'Player', 'Grab')
 	_owner.can_grab.z_index = _owner.z_index + 1
 	_owner.grabbing = true
 	(_owner.can_grab as Pickable).being_grabbed = true

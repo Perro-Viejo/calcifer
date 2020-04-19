@@ -20,6 +20,7 @@ func _on_area_exited(other):
 		speak(tr("Demon_Goodbye"))
 
 func eat(is_good: bool, carbs: int = 1):
+	Event.emit_signal('play_requested','Demon', 'Eat')
 	if is_good:
 		eaten_items += carbs
 
@@ -27,6 +28,9 @@ func eat(is_good: bool, carbs: int = 1):
 
 		$AnimatedSprite.scale += Vector2.ONE * carbs
 		_feed_shape.extents.x += carbs * 5
+		
+		yield(get_tree().create_timer(0.2), 'timeout')
+		Event.emit_signal('play_requested','Demon', 'Grow')
 	else:
 		speak(tr("Demon_Eat_neg"))
 
@@ -47,9 +51,12 @@ func _check_food(body: Node) -> void:
 		var particle = MAGIC_FIRE.instance()
 		add_child(particle)
 		particle.set_global_position(pickable.get_position())
+		Event.emit_signal('play_requested','Demon', 'Burn')
+		Event.emit_signal('play_requested','Demon', 'Ignite')
 		pickable.set_z_index(-1)
 		pickable.set_monitoring(false)
 		yield(get_tree().create_timer(3), 'timeout')
+		Event.emit_signal('stop_requested','Demon', 'Burn')
 		eat(pickable.is_good, pickable.carbs)
 		pickable.queue_free()
 		particle.queue_free()

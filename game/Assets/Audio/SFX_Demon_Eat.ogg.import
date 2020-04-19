@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Demon_Eat.ogg-33beb0521c99797596daf85cafd3c4bc.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX_Demon_Eat.ogg"
+dest_files=[ "res://.import/SFX_Demon_Eat.ogg-33beb0521c99797596daf85cafd3c4bc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

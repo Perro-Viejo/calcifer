@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Drop.ogg-f120276e008758ccb2c2279a03fe843d.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX_Drop.ogg"
+dest_files=[ "res://.import/SFX_Drop.ogg-f120276e008758ccb2c2279a03fe843d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
