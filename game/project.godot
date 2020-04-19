@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Label",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://Src/GUI/HUD/Dialogue.gd"
+}, {
 "base": "Area2D",
 "class": "Pickable",
 "language": "GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://Src/StateMachine/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"Dialogue": "",
 "Pickable": "",
 "Player": "",
 "State": "",

@@ -18,6 +18,11 @@ func _ready() -> void:
 	# Establecer valores por defecto
 	self._current_zone = ''
 
+	# Verificar si el personaje está dentro de una zona
+	yield(get_tree().create_timer(0.2), 'timeout')
+	if _current_zone == world_name:
+		_player.change_zoom()
+
 
 func _set_current_zone(val: String) -> void:
 	_current_zone = val if val != '' else world_name

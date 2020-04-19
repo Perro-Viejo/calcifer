@@ -15,7 +15,7 @@ signal Refocus
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Perro Viejo ░░░░
 signal zone_entered(name)
-signal character_spoke(character, message)
+signal character_spoke(character, message, time_to_disappear)
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 #For section tracking
