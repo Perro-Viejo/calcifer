@@ -48,7 +48,7 @@ func _check_food(body: Node) -> void:
 		add_child(particle)
 		particle.set_global_position(pickable.get_position())
 		pickable.set_z_index(-1)
-		pickable.set_monitoring(false) 
+		pickable.set_monitoring(false)
 		yield(get_tree().create_timer(3), 'timeout')
 		eat(pickable.is_good, pickable.carbs)
 		pickable.queue_free()
