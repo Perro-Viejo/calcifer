@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Src/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Src/Levels/World.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Assets/Images/_Temp_/miniroguelike_tilemap.png" type="Texture" id=4]
 [ext_resource path="res://Src/Characters/Demon/Demon.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Src/Pickables/Pickable.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Images/World/beer.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/World/dog.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/World/chest.png" type="Texture" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
@@ -216,7 +219,7 @@ tile_data = PoolIntArray( -4456467, 1, 0, -4456466, 1, 0, -4456465, 1, 0, -44564
 position = Vector2( 725.419, -308.532 )
 
 [node name="Player" parent="WorldLayer" instance=ExtResource( 1 )]
-position = Vector2( 171.916, 271.553 )
+position = Vector2( 180, 161 )
 z_index = 5
 priority = 1.0
 
@@ -242,6 +245,15 @@ position = Vector2( 0, -1 )
 
 [node name="Beer" parent="WorldLayer/Objects" instance=ExtResource( 6 )]
 position = Vector2( 507.919, -183.504 )
+img = ExtResource( 7 )
+
+[node name="Chest" parent="WorldLayer/Objects" instance=ExtResource( 6 )]
+position = Vector2( 142, 135 )
+img = ExtResource( 9 )
+
+[node name="Dog" parent="WorldLayer/Objects/Chest" instance=ExtResource( 6 )]
+img = ExtResource( 8 )
+on_free = "Gracias... Toto Santos."
 
 [node name="Tween" type="Tween" parent="WorldLayer"]
 [connection signal="pressed" from="WorldLayer/Button" to="." method="_on_Button_pressed"]
