@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MX_Temple.ogg-e8de25cea7ecce9f463e4c16cf4e1808.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/MX_Temple.ogg"
+dest_files=[ "res://.import/MX_Temple.ogg-e8de25cea7ecce9f463e4c16cf4e1808.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

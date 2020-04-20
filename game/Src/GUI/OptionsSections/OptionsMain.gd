@@ -16,7 +16,7 @@ func _ready()->void:
 	set_resolution()
 	set_volume_sliders()
 	Event.Languages = false #just in case project saved with visible Languages
-	
+
 	SetUp = false #Finished fader setup
 	Event.connect("Controls", self, "on_show_controls")
 	Event.connect("Languages", self, "on_show_languages")

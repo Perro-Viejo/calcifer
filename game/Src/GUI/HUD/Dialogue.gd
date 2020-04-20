@@ -12,15 +12,20 @@ var default_position
 var default_size
 
 var _current_disappear: = 0.0
+var _chars: = []
+var _count: = 0
+
+var _text: String
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Funciones ░░░░
 func _ready():
+	hide()
+
 	default_position = get_position()
 	default_size = get_size()
 
 	Event.connect('character_spoke', self, '_on_character_spoke')
 	$Timer.connect('timeout', self, '_on_timer_timeout')
 	$Timer.set_wait_time(animation_time)
-	set_visible_characters(0)
 
 	if animate_on_start:
 		start_animation()
@@ -29,11 +34,13 @@ func start_animation():
 	if has_node('Timer'): $Timer.start()
 
 func _on_timer_timeout():
-	if get_visible_characters() < text.length():
-		set_visible_characters(
-			get_visible_characters() + character_speed
-		)
+	if text.length() < _text.length():
+		text += _text[_count]
+		_count += 1
+		print(default_position)
+		rect_position.x = 160 - (rect_size.x / 2)
 	else:
+		_count = 0
 		$Timer.stop()
 
 		if _current_disappear > 0:
@@ -64,14 +71,13 @@ func _on_character_spoke(
 
 func set_text(text):
 	set_defaults()
-	.set_text(text)
 
 	if text != '':
-		set_visible_characters(0)
-		if animate_on_set_text and text and text.length() > 0:
+		_text = text
+		if animate_on_set_text:
 			start_animation()
 		else:
-			set_visible_characters(-1)
+			.set_text(text)
 
 func set_defaults():
 	.set_text('')

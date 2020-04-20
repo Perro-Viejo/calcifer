@@ -6,12 +6,12 @@ var _sources: Array = []
 func _ready():
 	for src in get_children():
 		_sources.append(src.name)
-	
+
 	Event.connect('play_requested', self, 'play_sound')
 	Event.connect('stop_requested', self, 'stop_sound')
 	Event.connect('pause_requested', self, 'pause_sound')
-	
-	
+
+
 
 func _get_audio(source, sound) -> Node:
 	return get_node(''+source+'/'+sound)
@@ -41,7 +41,7 @@ func stop_sound(source: String, sound: String) -> void:
 
 func pause_sound(source: String, sound: String) -> void:
 	var audio: Node = _get_audio(source, sound)
-	
+
 	if not audio.get('stream_paused'):
 		audio.stream_paused = true
 

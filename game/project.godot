@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Src/StateMachine/StateMachine.gd"
+}, {
+"base": "CollisionShape2D",
+"class": "Zone",
+"language": "GDScript",
+"path": "res://Src/Levels/Zone.gd"
 } ]
 _global_script_class_icons={
 "Dialogue": "",
 "Pickable": "",
 "Player": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Zone": ""
 }
 
 [application]

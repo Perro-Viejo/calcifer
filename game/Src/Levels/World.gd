@@ -2,7 +2,7 @@ extends Node2D
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Variables ░░░░
 export(String, FILE, "*.tscn") var Next_Scene: String
 export(Array, String) var zone_names
-export(String) var world_name = 'el mundo salvaje'
+export(String) var world_name = 'WORLD'
 
 var _current_zone: String setget _set_current_zone
 
@@ -40,13 +40,18 @@ func _zone_entered(
 		entered: bool
 	) -> void:
 
+	var zone: Zone = _zones.get_child(self_shape) as Zone
+
 	if entered:
-		if not zone_names.empty() and zone_names[self_shape]:
-			self._current_zone = zone_names[self_shape]
-		else:
-			self._current_zone = _zones.get_child(self_shape).name
+		self._current_zone = tr(zone.tr_name)
 	else:
 		self._current_zone = ''
 
 	yield(_player.change_zoom(!entered), 'completed')
 	Event.emit_signal('zone_entered', _current_zone)
+
+	if zone.music:
+		if entered:
+			Event.emit_signal('music_requested', zone.music)
+		else:
+			Event.emit_signal('music_stoped')

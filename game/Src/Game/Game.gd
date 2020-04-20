@@ -17,6 +17,11 @@ func _ready()->void:
 	#Background loader
 	SceneLoader.connect("scene_loaded", self, "on_scene_loaded")
 	#SceneLoader.load_scene("res://Levels/TestScene.tscn", {instructions="for what reason it got loaded"})
+
+	# Perro Viejo
+	Event.connect('music_requested', self, 'play_song')
+	Event.connect('music_stoped', $Music, 'stop')
+
 	guiBrain.gui_collect_focusgroup()
 
 func on_ChangeScene(scene):
@@ -74,3 +79,6 @@ func _on_FadeTween_tween_completed(object, key)->void:
 		FADEIN:
 			FadeState = IDLE
 
+func play_song(mx: AudioStream) -> void:
+	$Music.stream = mx
+	$Music.play()
