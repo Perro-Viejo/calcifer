@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Mudstep.ogg-afa8a26b694189c38605b4b76c732cf5.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX_Mudstep.ogg"
+dest_files=[ "res://.import/SFX_Mudstep.ogg-afa8a26b694189c38605b4b76c732cf5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

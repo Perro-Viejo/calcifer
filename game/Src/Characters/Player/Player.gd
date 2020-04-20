@@ -12,13 +12,21 @@ var is_moving = false
 var is_out: bool = false
 var can_grab: Area2D = null
 var grabbing: bool = false
+var on_ground: bool = false
+var fs_id: String = 'FS'
 
 onready var cam: Camera2D = $Camera2D
 onready var sprite: AnimatedSprite = $AnimatedSprite
+onready var foot_area: Area2D = $FootArea
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Funciones ░░░░
 func _ready() -> void:
+	# Escuchar area
+	$FootArea.connect('body_entered', self, 'toggle_on_ground', [ true ])
+	$FootArea.connect('body_exited', self, 'toggle_on_ground')
+
 	# Definir estado por defecto
 	play_animation()
+
 
 func change_zoom(out: bool = true) -> void:
 	is_out = out
@@ -58,3 +66,33 @@ func play_animation(state: String = '') -> void:
 				sprite.play('Idle')
 			else:
 				sprite.play('IdleGrab')
+
+
+func toggle_on_ground(body: Node2D, on: = false) -> void:
+	if not body.is_in_group('Floor'): return
+
+	on_ground = on
+
+	# Detener el SFX del caminado actual cuando se cambie de "tipo de piso"
+	# mientras se está en movimiento
+	Event.emit_signal('stop_requested', "Player", fs_id)
+
+	if on_ground:
+
+		var tile_map: TileMap = body as TileMap
+		var tile_set: FloorTileset = tile_map.tile_set
+		var tile_pos: Vector2 = (foot_area.global_position / 8).floor()
+		# Gono-style
+		var dir: Vector2 = $StateMachine/Move._last_dir
+
+		tile_pos.x += dir.x
+
+		if dir.y > 0:
+			tile_pos.y += 1
+
+		fs_id = tile_set.get_floor_sfx(tile_map.get_cellv(tile_pos))
+	else:
+		fs_id = 'FS'
+
+	if $StateMachine.state.name == STATES.WALK:
+		Event.emit_signal('play_requested', "Player", fs_id)
