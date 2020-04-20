@@ -11,5 +11,5 @@ dest_files=[ "res://.import/MX_Pinalito.ogg-aeca860b15c03e0bc2d88ed550086725.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

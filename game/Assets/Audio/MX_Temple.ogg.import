@@ -11,5 +11,5 @@ dest_files=[ "res://.import/MX_Temple.ogg-e8de25cea7ecce9f463e4c16cf4e1808.oggst
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/MX_Cristales.ogg-9c0a534bcae54fa96e26d57a2ee429eb.og
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

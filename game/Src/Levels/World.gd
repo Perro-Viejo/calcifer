@@ -52,6 +52,7 @@ func _zone_entered(
 
 	if zone.music:
 		if entered:
-			Event.emit_signal('music_requested', zone.music)
+			pass
+#			Event.emit_signal('music_requested', zone.music)
 		else:
 			Event.emit_signal('music_stoped')
