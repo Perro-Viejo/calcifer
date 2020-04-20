@@ -14,6 +14,7 @@ var can_grab: Area2D = null
 var grabbing: bool = false
 
 onready var cam: Camera2D = $Camera2D
+onready var sprite: AnimatedSprite = $AnimatedSprite
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Funciones ░░░░
 func _ready() -> void:
 	# Definir estado por defecto
@@ -44,6 +45,16 @@ func change_zoom(out: bool = true) -> void:
 func play_animation(state: String = '') -> void:
 	match state:
 		STATES.GRAB:
-			$AnimatedSprite.play('Grab')
+			sprite.play('Grab')
+		STATES.DROP:
+			sprite.play('Drop')
+		STATES.WALK:
+			if not grabbing:
+				sprite.play('Run')
+			else:
+				sprite.play('RunGrab')
 		_:
-			$AnimatedSprite.play('Idle')
+			if not grabbing:
+				sprite.play('Idle')
+			else:
+				sprite.play('IdleGrab')

@@ -26,7 +26,7 @@ func _ready():
 		start_animation()
 
 func start_animation():
-	if $Timer: $Timer.start()
+	if has_node('Timer'): $Timer.start()
 
 func _on_timer_timeout():
 	if get_visible_characters() < text.length():

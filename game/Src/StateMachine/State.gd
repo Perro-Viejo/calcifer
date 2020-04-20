@@ -24,7 +24,7 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
-	print('%s enters %s' % [ owner.name, name ])
+	# print('%s enters %s' % [ owner.name, name ])
 	pass
 
 
@@ -33,7 +33,7 @@ func world_tick() -> void:
 
 
 func exit() -> void:
-	print('%s exits %s' % [ owner.name, name ])
+	# print('%s exits %s' % [ owner.name, name ])
 	pass
 
 

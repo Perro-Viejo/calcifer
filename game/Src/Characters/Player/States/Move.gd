@@ -23,6 +23,8 @@ func _physics_process(delta) -> void:
 	if dir.x != 0:
 		_last_dir.x = dir.x
 		_last_dir.y = 0
+
+		_owner.sprite.flip_h = dir.x < 0
 	elif dir.y != 0:
 		_last_dir.x = 0
 		_last_dir.y = dir.y
@@ -39,7 +41,7 @@ func _physics_process(delta) -> void:
 
 	if _owner.grabbing and _owner.can_grab:
 		_owner.can_grab.global_position = _owner.global_position
-		_owner.can_grab.position.y -= 6
+		_owner.can_grab.position.y -= 8
 
 func enter(msg: Dictionary = {}) -> void:
 	.enter(msg)

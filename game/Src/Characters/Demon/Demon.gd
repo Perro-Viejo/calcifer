@@ -28,7 +28,7 @@ func eat(is_good: bool, carbs: int = 1):
 
 		$AnimatedSprite.scale += Vector2.ONE * carbs
 		_feed_shape.extents.x += carbs * 5
-		
+
 		yield(get_tree().create_timer(0.2), 'timeout')
 		Event.emit_signal('play_requested','Demon', 'Grow')
 	else:
