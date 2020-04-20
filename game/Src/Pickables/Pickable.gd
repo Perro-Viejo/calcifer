@@ -56,10 +56,10 @@ func toggle_collision(enable: bool = true) -> void:
 	$CollisionShape2D.disabled = !enable
 
 
-func _check_collision(area: Area2D, grab: bool = false) -> void:
-	if area.name != 'Player': return
+func _check_collision(area: Node2D, grab: bool = false) -> void:
+	if area.name != 'PlayerArea': return
 
-	var player: Player = area as Player
+	var player: Player = area.get_parent() as Player
 
 	if player.grabbing: return
 

@@ -30,9 +30,11 @@ func _physics_process(delta) -> void:
 		_last_dir.y = dir.y
 
 	if not _owner.is_out:
-		_owner.translate(dir * _calc_speed * delta)
+		_owner.move_and_collide(dir * _calc_speed * delta)
+#		_owner.translate(dir * _calc_speed * delta)
 	else:
-		_owner.translate(dir * _calc_speed * 2 * delta)
+		_owner.move_and_collide(dir * _calc_speed * 2 * delta)
+#		_owner.translate(dir * _calc_speed * 2 * delta)
 
 	if not dir == Vector2(0,0) and not _owner.is_moving:
 		_state_machine.transition_to(owner.STATES.WALK)
