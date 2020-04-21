@@ -1,7 +1,7 @@
 extends Node
 
 #Sounds
-var snd_TestBeep:AudioStream = preload("res://Assets/Sounds/TestBeep.wav")
+var snd_TestBeep:AudioStream = preload("res://Assets/Sounds/Test_Beep.ogg")
 var MX_Cristales:AudioStream = preload("res://Assets/Audio/MX_Cristales.ogg")
 var MX_MadreVieja:AudioStream = preload("res://Assets/Audio/MX_MadreVieja.ogg")
 var MX_Pinalito:AudioStream = preload("res://Assets/Audio/MX_Pinalito.ogg")
