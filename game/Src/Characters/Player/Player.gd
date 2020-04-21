@@ -13,7 +13,7 @@ var is_out: bool = false
 var can_grab: Area2D = null
 var grabbing: bool = false
 var on_ground: bool = false
-var fs_id: String = 'FS'
+var fs_id: String = 'FS_Dirt'
 
 onready var cam: Camera2D = $Camera2D
 onready var sprite: AnimatedSprite = $AnimatedSprite
@@ -23,6 +23,7 @@ func _ready() -> void:
 	# Escuchar area
 	$FootArea.connect('body_entered', self, 'toggle_on_ground', [ true ])
 	$FootArea.connect('body_exited', self, 'toggle_on_ground')
+	$AnimatedSprite.connect('frame_changed', self, '_on_frame_changed')
 
 	# Definir estado por defecto
 	play_animation()
@@ -73,10 +74,6 @@ func toggle_on_ground(body: Node2D, on: = false) -> void:
 
 	on_ground = on
 
-	# Detener el SFX del caminado actual cuando se cambie de "tipo de piso"
-	# mientras se está en movimiento
-	Event.emit_signal('stop_requested', "Player", fs_id)
-
 	if on_ground:
 
 		var tile_map: TileMap = body as TileMap
@@ -92,7 +89,15 @@ func toggle_on_ground(body: Node2D, on: = false) -> void:
 
 		fs_id = tile_set.get_floor_sfx(tile_map.get_cellv(tile_pos))
 	else:
-		fs_id = 'FS'
+		fs_id = 'FS_Dirt'
 
-	if $StateMachine.state.name == STATES.WALK:
-		Event.emit_signal('play_requested', "Player", fs_id)
+func _on_frame_changed() -> void:
+	
+	if $AnimatedSprite.animation == 'Run' or $AnimatedSprite.animation == 'RunGrab':
+		match $AnimatedSprite.frame:
+			0,3:
+				play_fs(fs_id)
+
+func play_fs(id):
+	Event.emit_signal('play_requested', "Player", id)
+	

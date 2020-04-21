@@ -11,5 +11,5 @@ dest_files=[ "res://.import/SFX_Demon_Idle.ogg-39918cbde94f731f174e2ceac11a8251.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

@@ -17,6 +17,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			_state_machine.transition_to(_owner.STATES.DROP, { dir = _last_dir })
 
 func _physics_process(delta) -> void:
+#	for body in _owner.foot_area.get_overlapping_bodies():
+#		_owner.toggle_on_ground(body, true)
+	
 	dir.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
 	dir.y = Input.get_action_strength("Down") - Input.get_action_strength("Up")
 

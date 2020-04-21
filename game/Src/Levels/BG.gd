@@ -1,6 +1,7 @@
 extends Node2D
 
 export (float) var max_distance
+export (bool) var active = true
 
 var listener
 var area_center
@@ -20,10 +21,11 @@ func _process(delta):
 		if distance_to_center <= max_distance:
 			$BG.set_global_position(listener.get_global_position())
 func _on_area_entered(other):
-	if other.get_name() == 'PlayerArea':
-		listener = other
-		if not $BG.is_playing():
-			$BG.play()
+	if active:
+		if other.get_name() == 'PlayerArea':
+			listener = other
+			if not $BG.is_playing():
+				$BG.play()
 
 
 
