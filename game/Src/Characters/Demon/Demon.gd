@@ -1,5 +1,7 @@
 extends Node2D
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Variables ░░░░
+export(bool) var in_intro = false
+
 const MAGIC_FIRE = preload("res://Src/Particles/MagicFireParticle.tscn")
 
 var eaten_items = 0
@@ -21,6 +23,11 @@ func _on_area_exited(other):
 
 func eat(is_good: bool, carbs: int = 1):
 	Event.emit_signal('play_requested','Demon', 'Eat')
+
+	if in_intro:
+		Event.emit_signal('intro_continued')
+		return
+
 	if is_good:
 		eaten_items += carbs
 

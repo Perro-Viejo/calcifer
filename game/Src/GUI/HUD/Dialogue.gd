@@ -14,8 +14,8 @@ var default_size
 var _current_disappear: = 0.0
 var _chars: = []
 var _count: = 0
-
 var _text: String
+var _hud: Hud
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ Funciones ░░░░
 func _ready():
 	hide()
@@ -50,6 +50,7 @@ func _on_timer_timeout():
 		else:
 			# El texto no desaparecerá sólo, sino que se espera una señal que lo
 			# haga desaparecer
+			_hud.show_continue(0)
 			return
 		_current_disappear = 0.0
 		hide()
@@ -61,12 +62,24 @@ func _on_character_spoke(
 	match character:
 		'Demon':
 			add_color_override("font_color", Color('#e35f58'))
+		'Teo':
+			add_color_override("font_color", Color('#3d6e70'))
+		_:
+			add_color_override("font_color", Color('#222323'))
 
-	show()
-	Event.emit_signal('play_requested', 'UI', 'Dialogue')
-	set_text(message)
+	if message != '':
+		show()
+		Event.emit_signal('play_requested', 'UI', 'Dialogue')
+		set_text(message)
 
-	_current_disappear = time_to_disappear
+		_current_disappear = time_to_disappear
+
+		if time_to_disappear < 0:
+			if not _hud:
+				_hud = (get_node('../../') as Hud)
+			_hud.in_dialogue = true
+	else:
+		hide()
 
 
 func set_text(text):

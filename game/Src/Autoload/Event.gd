@@ -18,6 +18,8 @@ signal zone_entered(name)
 signal character_spoke(character, message, time_to_disappear)
 signal music_requested(stream) # Sólo mientras tanto
 signal music_stoped() # Sólo mientras tanto
+signal intro_shown(msg)
+signal intro_continued
 
 signal play_requested(source, sound, position)
 signal stop_requested(source, sound)
