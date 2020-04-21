@@ -24,7 +24,7 @@ var dflt_values: Dictionary
 
 func _ready():
 	Pitch = Pitch/24
-	
+
 	# Crear el diccionario de valores por defecto para los efectos de sonido
 	# hijos
 	for sfx in get_children():
@@ -35,7 +35,7 @@ func _ready():
 
 func play():
 	randomize()
-	
+
 	index_sound = randi()%get_child_count()
 	select_sound = get_child(index_sound)
 	avVolume = dflt_values[select_sound.name].volume + Volume
@@ -52,7 +52,7 @@ func play():
 			randomizePitch(dflt_values[select_sound.name].pitch, minPitch, maxPitch)
 		else:
 			select_sound.set_pitch_scale(dflt_values[select_sound.name].pitch + Pitch)
-	
+
 func stop():
 	if select_sound:
 		select_sound.stop()

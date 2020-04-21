@@ -130,6 +130,7 @@ stream = ExtResource( 11 )
 volume_db = -10.0
 
 [node name="Dialogue" type="Node2D" parent="UI"]
+script = ExtResource( 26 )
 
 [node name="Dialogue" type="AudioStreamPlayer" parent="UI/Dialogue"]
 stream = ExtResource( 27 )

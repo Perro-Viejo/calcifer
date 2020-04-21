@@ -28,8 +28,8 @@ func _show_intro() -> void:
 	if _in_intro and _count < intro_messages:
 		Event.emit_signal('intro_shown', _get_intro_msg())
 	elif _count <= dialogue_messages:
-		_in_intro = false
-		if _count == intro_messages:
+		if _in_intro and _count == intro_messages:
+			_in_intro = false
 			_overlay.hide()
 			_count = 1
 
@@ -49,7 +49,7 @@ func _get_intro_msg() -> String:
 
 func _show_dialogue_msg() -> void:
 	match _count:
-		1, 3, 5, 7, 9, 10, 11, 12:
+		1, 3, 5, 7, 9, 10, 11:
 			Event.emit_signal(
 				'character_spoke', 'Demon', tr('DEMON_0%d' % _demon_count), -1
 			)
